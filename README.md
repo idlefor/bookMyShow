@@ -14,8 +14,8 @@ Booking a show using Java 8 SpringBoot Application
 Steps to build:
 
 1. Download source code
-2. Run BookYourShowApplication.java either click on the class to start springBoot button 
-![image](https://user-images.githubusercontent.com/77923632/184545965-c5c47fab-1fb0-4ada-804f-d1a282125e79.png)
+2. Run BookYourShowApplication.java click on the GREEN PLAY button on the springboot class highlighted in red circle.
+![image](https://user-images.githubusercontent.com/77923632/184546262-9fa2bc56-864a-4895-a8f5-d68b683ac855.png)
 3. Follow the instruction to select ADMIN or BUYER role and follow the step according.
 ![image](https://user-images.githubusercontent.com/77923632/184546003-5ddd1d33-6c16-4a10-9bb8-92f835e1cef2.png)
 
@@ -67,6 +67,6 @@ The “Add” command for admin must ensure rows cannot be added beyond the uppe
 1.       To add scheduler job to scan all the record in the database for show_seat so that those booking status BOOKING_RESERVED after the cancellation time is up can 
          to become BOOKING_CONFIRMED. 
 2.       To add scheduler job to scan all the record in the database for show_seat that have show ended need go to all the seat and rest all booking_status back to            UNRESERVED by the end of a day.
-3.       To validate the buyer input when booking seats and reject the incorrect entry eg. Z19 as max no of seat per row is 10 only
+3.       To add more dynamic drawing or diagram on the cinema seating plan after any booking or cancelling of the ticket real time.
 4.       Use hibernate mapping @JoinColumn to query 2 more more table at the same time instead of one query per table to fetch information from different table
           
