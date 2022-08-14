@@ -10,9 +10,8 @@ Booking a show using Java 8 SpringBoot Application
 
 # Class diagram
 ![image](https://user-images.githubusercontent.com/77923632/184535102-2094f036-ac3c-48e5-9236-49ff1c8e6c74.png)
-# How to build and run
-Steps to build:
 
+# How to run
 1. Download source code
 2. Run BookYourShowApplication.java click on the GREEN PLAY button on the springboot class highlighted in red circle.
 ![image](https://user-images.githubusercontent.com/77923632/184546262-9fa2bc56-864a-4895-a8f5-d68b683ac855.png)
@@ -35,13 +34,12 @@ For the simplicity of system, the following assumptions was made while implement
 3. Admin user can config max up to 10 seats for each show and max row in theater to be 26. Seat numbers are kept fixed in all theaters.
 4. No Payment flow used as there is no requirement from the scope
 5. Seat book first within the cancellation timing are having booking status as BOOKING_RESERVED
-6. No seat status for the seat reserved until the springboot is restarted.
+6. No reset of booking seat status for any seat reserved until the springboot is restarted and in memory is wiped. This can be enhanced in future scope.
 7. I adopted using spring framework @Transactional to prevent dirty read and obey ACID within any process involving in each buyer booking and cancellation of the ticket.
-8. No Add command add for ADMIN as the scope is not clear in the given email
-9. We assumed Buyer will input the correct seat number that is within scope of this assignment, if incorrect entry is insert program will ignore them
+8. No Add command for ADMIN as the requirement is not clear in the given assignment screenshot
+9. We assumed Buyer will input the correct seat number that is within scope of this assignment, if incorrect entry is insert program will ignore them. eg. Z11
 
 # Commands to be implemented for Admin :
-
 1.       Setup  <Show Number> <Number of Rows> <Number of seats per row>  <Cancellation window in minutes>  (To setup the number of seats per show)
 2.       View <Show Number>    (To display Show Number, Ticket#, Buyer Phone#, Seat Numbers allocated to the buyer)
           Buyer – The users should be able retrieve list of available seats for a show     
@@ -53,20 +51,19 @@ For the simplicity of system, the following assumptions was made while implement
 
 
 # Constraints:
-·         Assume max seats per row is 10 and max rows are 26. Example seat number A1,  H5 etc.
-The “Add” command for admin must ensure rows cannot be added beyond the upper limit of 26.
-·         After booking, User can cancel the seats within a time window of 2 minutes (configurable).   Cancellation after that is not allowed.
-·         Only one booking per phone# is allowed per show.
+1.        Assume max seats per row is 10 and max rows are 26. Example seat number A1,  H5 etc.
+2.        The “Add” command for admin must ensure rows cannot be added beyond the upper limit of 26.
+3.        After booking, User can cancel the seats within a time window of 2 minutes (configurable).   Cancellation after that is not allowed.
+4.        Only one booking per phone# is allowed per show.
 
 # Requirements
 1.        Implement the solution as Java standalone application (Java 8+). Can be Springboot as well. The data shall be in-memory.  
 2.        Write appropriate Unit Tests.
 3.        Implement the above use case considering object oriented principles and development best practices. The implementation should be a tested working executable.  
 
-# Improvements to be made outside the assignment scope
-1.       To add scheduler job to scan all the record in the database for show_seat so that those booking status BOOKING_RESERVED after the cancellation time is up can 
-         to become BOOKING_CONFIRMED. 
-2.       To add scheduler job to scan all the record in the database for show_seat that have show ended need go to all the seat and rest all booking_status back to            UNRESERVED by the end of a day.
-3.       To add more dynamic drawing or diagram on the cinema seating plan after any booking or cancelling of the ticket real time.
-4.       Use hibernate mapping @JoinColumn to query 2 more more table at the same time instead of one query per table to fetch information from different table
+# Improvements to be made
+1.       To add background scheduler job to scan all the records in the database for show_seat to change them from status BOOKING_RESERVED to BOOKING_CONFIRMED after          cancellation time in minute is reach for each booking. 
+2.       To add background scheduler job to scan all the record in the database for each end of day at a fixed timing to reset t all booking_status back to                    UNRESERVED so that buyer can book them the next time.
+3.       To add more on the fly interractive digraam on the cinema seating plan after any booking or cancelling of the ticket is done at real time.
+4.       To utilise of ORM hibernate mapping @JoinColumn to query 2 more more table at the same time instead of one query per table to fetch information from                  different table to reduce number of database call.
           
