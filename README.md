@@ -15,6 +15,10 @@ Steps to build:
 
 1. Download source code
 2. Run BookYourShowApplication.java either click on the class to start springBoot button 
+![image](https://user-images.githubusercontent.com/77923632/184545965-c5c47fab-1fb0-4ada-804f-d1a282125e79.png)
+3. Follow the instruction to select ADMIN or BUYER role and follow the step according.
+![image](https://user-images.githubusercontent.com/77923632/184546003-5ddd1d33-6c16-4a10-9bb8-92f835e1cef2.png)
+
 
 # Use Case
 
@@ -62,6 +66,7 @@ The “Add” command for admin must ensure rows cannot be added beyond the uppe
 # Improvements to be made outside the assignment scope
 1.       To add scheduler job to scan all the record in the database for show_seat so that those booking status BOOKING_RESERVED after the cancellation time is up can 
          to become BOOKING_CONFIRMED. 
-2.       To add scheduler job to scan all the record in the database for show_seat that have show ended need go to all the seat and rest all booking_status back to default value.
+2.       To add scheduler job to scan all the record in the database for show_seat that have show ended need go to all the seat and rest all booking_status back to            UNRESERVED by the end of a day.
 3.       To validate the buyer input when booking seats and reject the incorrect entry eg. Z19 as max no of seat per row is 10 only
+4.       Use hibernate mapping @JoinColumn to query 2 more more table at the same time instead of one query per table to fetch information from different table
           
